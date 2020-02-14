@@ -11,6 +11,8 @@ namespace HotelBookingApplicationMVC.UserRepository
             list.Add(user);
             user = new User("Bhanu", "22");
             list.Add(user);
+            user = new User("Manju", "22");
+            list.Add(user);
         }
         public IEnumerable<User> Display()
         {
