@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelBookingApplicationMVC.Entity
+﻿namespace HotelBookingApplicationMVC.Entity
 {
     public class User
     {
-        public string mailId { get; set; }
-        public string password { get; set; }
+        public string name { get; set; }
+        public string age { get; set; }
+        public User(string name, string age)
+        {
+            this.name = name;
+            this.age = age;
+        }
+        public User()
+        {
+
+        }
     }
 }

@@ -1,17 +1,16 @@
-﻿@model HotelBookingApplicationMVC.Entity.User
-
+﻿@model IEnumerable<HotelBookingApplicationMVC.Entity.User>
 @{
-    Layout = null;
+    ViewBag.Title= "index";
 }
 <h2>Index</h2>
-<table>
+@*<table>
     @foreach (HotelBookingApplicationMVC.Entity.User item in (IEnumerable<HotelBookingApplicationMVC.Entity.User>)ViewData["List"])
     {
         <tr>
-            <td>@item.mailId</td>
+            <td>@item.name</td>
         </tr>
         <tr>
-            <td>@item.password</td>
+            <td>@item.age</td>
         </tr>
     }
 </table>
@@ -19,10 +18,10 @@
     @foreach (HotelBookingApplicationMVC.Entity.User item in (IEnumerable<HotelBookingApplicationMVC.Entity.User>)TempData["List"])
     {
         <tr>
-            <td>@item.mailId</td>
+            <td>@item.name</td>
         </tr>
         <tr>
-            <td>@item.password</td>
+            <td>@item.age</td>
         </tr>
     }
 </table>`
@@ -30,13 +29,37 @@
     @foreach (HotelBookingApplicationMVC.Entity.User item in ViewBag.List)
     {
         <tr>
-            <td>@item.mailId</td>
+            <td>@item.name</td>
         </tr>
         <tr>
-            <td>@item.password</td>
+            <td>@item.age</td>
         </tr>
     }
-</table>
+</table>*@
+@Html.ActionLink("Create U", "Create")
+<br />
+@if (TempData["Message"] != null)
+{
+    @Html.Label((string)TempData["Message"])
+}
+@foreach (HotelBookingApplicationMVC.Entity.User user in @Model)
+{
+    <table border="1">
+        <tr>
+            <td>
+                @user.name
+            </td>
+            <td>
+                @user.age
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { name = user.name })
+                @Html.ActionLink("Delete", "Delete", new { name = user.name })
+            </td>
+
+        </tr>
+    </table>
+}
 @*<!DOCTYPE html>
 
     <html>

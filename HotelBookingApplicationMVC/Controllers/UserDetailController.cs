@@ -6,14 +6,42 @@ namespace HotelBookingApplicationMVC.Controllers
 {
     public class UserDetailController : Controller
     {
-        // GET: UserDetail
-        public ActionResult Index()
+        Repository repository = new Repository();
+        public ViewResult Index()
         {
-            IEnumerable<User> list = Repository.GetDetails();
-            ViewBag.List = list;
-            TempData["List"] = list;
-            ViewData["List"] = list;
+
+            IEnumerable<User> user = repository.Display();
+            return View(user);
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Create(User restaurantEntity)
+        {
+            repository.AddCustomer(restaurantEntity);
+            TempData["Message"] = "User Added Successfully";
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit(string name)
+        {
+            User user = repository.GetDetail(name);
+            return View(user);
+        }
+        public ActionResult Delete(string name)
+        {
+            repository.Delete(name);
+            TempData["Message"] = "User details deleted";
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Update(User user)
+        {
+            repository.Update(user);
+            TempData["Message"] = "User Updated successfully";
+            return RedirectToAction("Index");
         }
     }
 }

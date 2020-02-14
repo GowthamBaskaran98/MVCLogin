@@ -146,6 +146,9 @@
     </Content>
     <Content Include="Views\UserDetail\Index.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\UserDetail\Create.cshtml" />
+    <Content Include="Views\UserDetail\Edit.cshtml" />
+    <Content Include="Views\UserDetail\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

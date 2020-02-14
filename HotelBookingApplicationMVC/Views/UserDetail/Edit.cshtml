@@ -1,0 +1,30 @@
+﻿@model HotelBookingApplicationMVC.Entity.User
+
+@{
+    Layout = null;
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Update", "UserDetail", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.name)
+    <table cellpadding="10">
+
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.age)
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.age)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Cancel", "Index")
+            </td>
+            <td>
+                <input type="submit" id="Update" />
+            </td>
+        </tr>
+    </table>
+}
