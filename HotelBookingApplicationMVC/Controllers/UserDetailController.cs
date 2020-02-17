@@ -14,14 +14,19 @@ namespace HotelBookingApplicationMVC.Controllers
             return View(user);
         }
         [HttpGet]
-        public ActionResult Create()
+        [ActionName("Create")]
+        public ActionResult Create_Get()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(User restaurantEntity)
+        [ActionName("Create")]
+        public ActionResult Create_Post()
         {
-            repository.AddCustomer(restaurantEntity);
+            User user = new User();
+            //UpdateModel<User>(user);
+            TryUpdateModel<User>(user);
+            repository.AddCustomer(user);
             TempData["Message"] = "User Added Successfully";
             return RedirectToAction("Index");
         }
