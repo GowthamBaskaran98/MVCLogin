@@ -7,46 +7,25 @@ namespace HotelBookingApplicationMVC.Controllers
     public class UserDetailController : Controller
     {
         Repository repository = new Repository();
-        public ViewResult Index()
-        {
-
-            IEnumerable<User> user = repository.Display();
-            return View(user);
-        }
-        [HttpGet]
-        [ActionName("Create")]
-        public ActionResult Create_Get()
+        // GET: OnlineLogisticsRegistration
+        public ActionResult Index()
         {
             return View();
         }
-        [HttpPost]
-        [ActionName("Create")]
-        public ActionResult Create_Post()
+        public ActionResult Create()
         {
-            User user = new User();
-            //UpdateModel<User>(user);
-            TryUpdateModel<User>(user);
-            repository.AddCustomer(user);
-            TempData["Message"] = "User Added Successfully";
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                TryUpdateModel<User>(user);
+                repository.Add(user);
+            }
+            return View();// Redirect("LogIn");
+
         }
-        public ActionResult Edit(string name)
+        public ActionResult LogIn()
         {
-            User user = repository.GetDetail(name);
-            return View(user);
-        }
-        public ActionResult Delete(string name)
-        {
-            repository.Delete(name);
-            TempData["Message"] = "User details deleted";
-            return RedirectToAction("Index");
-        }
-        [HttpPost]
-        public ActionResult Update(User user)
-        {
-            repository.Update(user);
-            TempData["Message"] = "User Updated successfully";
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }
